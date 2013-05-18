@@ -1,4 +1,10 @@
+## Live Demo
+
 Getting this running Heroku was suprisingly easy - they already have the required libraries.
+
+[http://rmagick-demo.herokuapp.com/](http://rmagick-demo.herokuapp.com/)
+
+## Local Setup
 
 To get it running locally, on a Mac with Homebrew:
 
