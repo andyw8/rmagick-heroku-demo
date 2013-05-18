@@ -1,22 +1,35 @@
-require 'sinatra'
-require 'RMagick'
+Bundler.require
 
 get '/' do
   content_type 'image/png'
-  canvas = Magick::Image.new(240, 300,
-                Magick::HatchFill.new('white','lightcyan2'))
-  gc = Magick::Draw.new
+canvas = Magick::Image.new(240, 300,
+              Magick::HatchFill.new('white','lightcyan2'))
+gc = Magick::Draw.new
 
-  gc.stroke('#001aff')
-  gc.stroke_width(3)
-  gc.fill('#00ff00')
+# Draw ellipse
+gc.stroke('red')
+gc.stroke_width(3)
+gc.fill_opacity(0)
+gc.ellipse(120, 150, 80, 120, 0, 270)
 
-  x = 120
-  y = 32.5
-  gc.polygon(x,    y,     x+29, y+86,  x+109, y+86,
-             x+47, y+140, x+73, y+226, x,     y+175,
-             x-73, y+226, x-47, y+140, x-109, y+86,
-             x-29, y+86)
+# Draw endpoints
+gc.stroke('gray50')
+gc.stroke_width(1)
+gc.circle(120, 150, 124, 150)
+gc.circle(200, 150, 204, 150)
+gc.circle(120,  30, 124,  30)
+
+# Draw lines
+gc.line(120, 150, 200, 150)
+gc.line(120, 150, 120,  30)
+
+# Annotate
+gc.stroke('transparent')
+gc.fill('black')
+gc.text(130, 35, "End")
+gc.text(188, 135, "Start")
+gc.text(130, 95, "'Height=120'")
+gc.text(55, 155, "'Width=80'")
 
   gc.draw(canvas)
   canvas.format = 'png'
