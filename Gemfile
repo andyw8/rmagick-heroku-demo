@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rmagick"
+gem "rmagick", require: 'RMagick'
 gem "sinatra"
 
 group :development do
